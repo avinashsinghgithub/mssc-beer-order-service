@@ -1,7 +1,7 @@
 package guru.sfg.beer.order.service.sm;
 
-import guru.sfg.beer.order.service.domain.BeerOrderEventEnum;
-import guru.sfg.beer.order.service.domain.BeerOrderStatusEnum;
+import guru.sfg.beer.order.service.sm.domain.BeerOrderEventEnum;
+import guru.sfg.beer.order.service.sm.domain.BeerOrderStatusEnum;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;

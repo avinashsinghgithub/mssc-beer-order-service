@@ -14,19 +14,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.order.service.domain;
+package guru.sfg.beer.order.service.sm.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import java.sql.Timestamp;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -36,24 +33,25 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Customer extends BaseEntity {
+public class BeerOrderLine extends BaseEntity {
 
     @Builder
-    public Customer(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerName,
-                    UUID apiKey, Set<BeerOrder> beerOrders) {
+    public BeerOrderLine(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate,
+                         BeerOrder beerOrder, UUID beerId, Integer orderQuantity, String upc,
+                         Integer quantityAllocated) {
         super(id, version, createdDate, lastModifiedDate);
-        this.customerName = customerName;
-        this.apiKey = apiKey;
-        this.beerOrders = beerOrders;
+        this.beerOrder = beerOrder;
+        this.beerId = beerId;
+        this.orderQuantity = orderQuantity;
+        this.quantityAllocated = quantityAllocated;
+        this.upc = upc;
     }
 
-    private String customerName;
+    @ManyToOne
+    private BeerOrder beerOrder;
 
-    @Column(length = 36, columnDefinition = "varchar(36)")
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID apiKey;
-
-    @OneToMany(mappedBy = "customer")
-    private Set<BeerOrder> beerOrders;
-
+    private UUID beerId;
+    private String upc;
+    private Integer orderQuantity = 0;
+    private Integer quantityAllocated = 0;
 }

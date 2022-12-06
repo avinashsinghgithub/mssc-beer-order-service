@@ -14,18 +14,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.order.service.domain;
+package guru.sfg.beer.order.service.sm.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -36,31 +34,26 @@ import java.util.UUID;
  */
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
-public class BeerOrder extends BaseEntity {
+@Entity
+public class Customer extends BaseEntity {
 
     @Builder
-    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef, Customer customer,
-                     Set<BeerOrderLine> beerOrderLines, BeerOrderStatusEnum orderStatus,
-                     String orderStatusCallbackUrl) {
+    public Customer(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerName,
+                    UUID apiKey, Set<BeerOrder> beerOrders) {
         super(id, version, createdDate, lastModifiedDate);
-        this.customerRef = customerRef;
-        this.customer = customer;
-        this.beerOrderLines = beerOrderLines;
-        this.orderStatus = orderStatus;
-        this.orderStatusCallbackUrl = orderStatusCallbackUrl;
+        this.customerName = customerName;
+        this.apiKey = apiKey;
+        this.beerOrders = beerOrders;
     }
 
-    private String customerRef;
+    private String customerName;
 
-    @ManyToOne
-    private Customer customer;
+    @Column(length = 36, columnDefinition = "varchar(36)")
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    private UUID apiKey;
 
-    @OneToMany(mappedBy = "beerOrder", cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private Set<BeerOrderLine> beerOrderLines;
+    @OneToMany(mappedBy = "customer")
+    private Set<BeerOrder> beerOrders;
 
-    private BeerOrderStatusEnum orderStatus = BeerOrderStatusEnum.NEW;
-    private String orderStatusCallbackUrl;
 }
