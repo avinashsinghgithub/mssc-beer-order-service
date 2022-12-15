@@ -17,7 +17,7 @@
 
 package guru.sfg.beer.order.service.web.mappers;
 
-import guru.sfg.beer.order.service.sm.domain.BeerOrder;
+import guru.sfg.beer.order.service.domain.BeerOrder;
 import guru.sfg.brewery.model.BeerOrderDto;
 import org.mapstruct.Mapper;
 

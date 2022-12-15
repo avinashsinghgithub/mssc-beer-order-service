@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package guru.sfg.beer.order.service.sm.domain;
+package guru.sfg.beer.order.service.domain;
 
 public enum BeerOrderStatusEnum {
     NEW, VALIDATED, VALIDATION_PENDING, VALIDATION_EXCEPTION,

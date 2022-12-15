@@ -2,9 +2,9 @@ package guru.sfg.beer.order.service.sm;
 
 import guru.sfg.beer.order.service.repositories.BeerOrderRepository;
 import guru.sfg.beer.order.service.services.BeerOrderManagerImpl;
-import guru.sfg.beer.order.service.sm.domain.BeerOrder;
-import guru.sfg.beer.order.service.sm.domain.BeerOrderEventEnum;
-import guru.sfg.beer.order.service.sm.domain.BeerOrderStatusEnum;
+import guru.sfg.beer.order.service.domain.BeerOrder;
+import guru.sfg.beer.order.service.domain.BeerOrderEventEnum;
+import guru.sfg.beer.order.service.domain.BeerOrderStatusEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;

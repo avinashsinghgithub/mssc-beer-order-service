@@ -14,21 +14,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.order.service.sm.domain;
+package guru.sfg.beer.order.service.domain;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.sql.Timestamp;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -36,31 +31,27 @@ import java.util.UUID;
  */
 @Getter
 @Setter
-@Entity
 @NoArgsConstructor
-public class BeerOrder extends BaseEntity {
+@Entity
+public class BeerOrderLine extends BaseEntity {
 
     @Builder
-    public BeerOrder(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, String customerRef, Customer customer,
-                     Set<BeerOrderLine> beerOrderLines, BeerOrderStatusEnum orderStatus,
-                     String orderStatusCallbackUrl) {
+    public BeerOrderLine(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate,
+                         BeerOrder beerOrder, UUID beerId, Integer orderQuantity, String upc,
+                         Integer quantityAllocated) {
         super(id, version, createdDate, lastModifiedDate);
-        this.customerRef = customerRef;
-        this.customer = customer;
-        this.beerOrderLines = beerOrderLines;
-        this.orderStatus = orderStatus;
-        this.orderStatusCallbackUrl = orderStatusCallbackUrl;
+        this.beerOrder = beerOrder;
+        this.beerId = beerId;
+        this.orderQuantity = orderQuantity;
+        this.quantityAllocated = quantityAllocated;
+        this.upc = upc;
     }
 
-    private String customerRef;
-
     @ManyToOne
-    private Customer customer;
+    private BeerOrder beerOrder;
 
-    @OneToMany(mappedBy = "beerOrder", cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private Set<BeerOrderLine> beerOrderLines;
-
-    private BeerOrderStatusEnum orderStatus = BeerOrderStatusEnum.NEW;
-    private String orderStatusCallbackUrl;
+    private UUID beerId;
+    private String upc;
+    private Integer orderQuantity = 0;
+    private Integer quantityAllocated = 0;
 }

@@ -1,6 +1,6 @@
 package guru.sfg.beer.order.service.bootstrap;
 
-import guru.sfg.beer.order.service.sm.domain.Customer;
+import guru.sfg.beer.order.service.domain.Customer;
 import guru.sfg.beer.order.service.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
