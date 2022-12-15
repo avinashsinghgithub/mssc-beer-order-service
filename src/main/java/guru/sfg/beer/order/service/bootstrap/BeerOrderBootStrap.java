@@ -35,6 +35,8 @@ public class BeerOrderBootStrap implements CommandLineRunner {
                     .apiKey(UUID.randomUUID())
                     .build());
             log.debug("Testing room Customer Id: "+savedCustomer.getId().toString());
+        }else{
+            System.out.println("beers exists: ");
         }
     }
 }
