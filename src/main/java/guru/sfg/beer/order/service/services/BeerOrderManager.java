@@ -10,3 +10,5 @@ public interface BeerOrderManager {
 
     void processValidationResult(UUID beerOrderId, Boolean isValid);
 }
+
+https://www.udemy.com/course/spring-boot-microservices-with-spring-cloud-beginner-to-guru/learn/practice/1152368/instructor-solution#overview
