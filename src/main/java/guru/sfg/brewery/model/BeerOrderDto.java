@@ -30,8 +30,8 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
+@Builder
 public class BeerOrderDto {
 
     @JsonProperty("id")

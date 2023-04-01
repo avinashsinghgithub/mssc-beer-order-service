@@ -29,9 +29,9 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class CustomerDto{
+@Builder
+public class CustomerDto {
 
     @JsonProperty("id")
     private UUID id = null;
