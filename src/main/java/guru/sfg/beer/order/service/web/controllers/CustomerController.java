@@ -19,8 +19,8 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public CustomerPagedList getCustomers(@RequestParam Integer pageNumber,
-                                                @RequestParam Integer pageSize ){
+    public CustomerPagedList getCustomers(@RequestParam(required = false) Integer pageNumber,
+                                                @RequestParam(required = false) Integer pageSize ){
         if(pageNumber == null || pageNumber <0)
             pageNumber = DEFAULT_PAGE_NUMBER;
         if(pageSize == null || pageSize <0)
