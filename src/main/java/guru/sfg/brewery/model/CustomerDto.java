@@ -49,4 +49,6 @@ public class CustomerDto {
 
     private String customerName;
 
+    public static class CustomerDtoBuilder{};
+
 }

@@ -56,4 +56,6 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     private Set<BeerOrder> beerOrders;
 
+    public static class CustomerBuilder{};
+
 }

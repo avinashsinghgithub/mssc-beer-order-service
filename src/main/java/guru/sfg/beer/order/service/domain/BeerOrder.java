@@ -63,4 +63,6 @@ public class BeerOrder extends BaseEntity {
 
     private BeerOrderStatusEnum orderStatus = BeerOrderStatusEnum.NEW;
     private String orderStatusCallbackUrl;
+
+    public static class BeerOrderBuilder{};
 }
